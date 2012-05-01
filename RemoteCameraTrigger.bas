@@ -21,12 +21,14 @@ define INPUTPOTI     port[6]
 '---- SYSTEM MEMORY -------
 '--------------------------
 define INTERVAL      byte[1]
+define SHUTTERTIME   byte[2]
 
 'Initialisieren
 #START
   LED=OFF
   CAMERAFOCUS=OFF
   CAMERATRIGGER=OFF
+  SHUTTERTIME = 10 'Auslöser für 10 * 20ms = 200ms offen halten
   goto LOOP
 
 #LOOP
@@ -38,8 +40,7 @@ define INTERVAL      byte[1]
   LED=ON
   CAMERAFOCUS=ON
   CAMERATRIGGER=ON
-  'Auslöser für 10 * 20ms = 200ms offen halten
-  pause 10
+  pause SHUTTERTIME
 
   'Auslöser loslassen
   LED=OFF
